@@ -1,30 +1,59 @@
--- Database schema for Mutual Funds Analytics
-
--- Table to store mutual fund schemes metadata
-CREATE TABLE IF NOT EXISTS mutual_fund_schemes (
-    scheme_code INTEGER PRIMARY KEY,
-    scheme_name TEXT NOT NULL,
+CREATE TABLE dim_fund (
+    amfi_code INTEGER PRIMARY KEY,
+    scheme_name TEXT,
     fund_house TEXT,
-    scheme_type TEXT,
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    category TEXT,
+    plan TEXT,
+    risk_grade TEXT
 );
 
--- Table to store NAV time-series details
-CREATE TABLE IF NOT EXISTS daily_nav_history (
+CREATE TABLE dim_date (
+    date_id INTEGER PRIMARY KEY,
+    full_date DATE,
+    year INTEGER,
+    month INTEGER,
+    quarter INTEGER
+);
+
+CREATE TABLE fact_nav (
+    nav_id INTEGER PRIMARY KEY AUTOINCREMENT,
+    amfi_code INTEGER,
+    date_id INTEGER,
+    nav REAL,
+    FOREIGN KEY (amfi_code) REFERENCES dim_fund(amfi_code),
+    FOREIGN KEY (date_id) REFERENCES dim_date(date_id)
+);
+
+CREATE TABLE fact_transactions (
+    tx_id INTEGER PRIMARY KEY AUTOINCREMENT,
+    investor_id TEXT,
+    transaction_date DATE,
+    amfi_code INTEGER,
+    transaction_type TEXT,
+    amount_inr REAL,
+    state TEXT,
+    city TEXT,
+    age_group TEXT,
+    kyc_status TEXT,
+    FOREIGN KEY (amfi_code) REFERENCES dim_fund(amfi_code)
+);
+
+CREATE TABLE fact_performance (
+    amfi_code INTEGER PRIMARY KEY,
+    return_1yr_pct REAL,
+    return_3yr_pct REAL,
+    return_5yr_pct REAL,
+    alpha REAL,
+    beta REAL,
+    sharpe_ratio REAL,
+    sortino_ratio REAL,
+    max_drawdown_pct REAL,
+    FOREIGN KEY (amfi_code) REFERENCES dim_fund(amfi_code)
+);
+
+CREATE TABLE fact_aum (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
-    scheme_code INTEGER NOT NULL,
-    nav_date DATE NOT NULL,
-    nav DECIMAL(10, 4) NOT NULL,
-    daily_return DECIMAL(10, 6),
-    rolling_30_nav DECIMAL(10, 4),
-    rolling_90_nav DECIMAL(10, 4),
-    rolling_volatility_30d DECIMAL(10, 6),
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    FOREIGN KEY(scheme_code) REFERENCES mutual_fund_schemes(scheme_code),
-    UNIQUE(scheme_code, nav_date)
+    fund_house TEXT,
+    aum_crore REAL,
+    year INTEGER
 );
-
--- Index for faster chronological lookups by scheme
-CREATE INDEX IF NOT EXISTS idx_nav_history_scheme_date 
-ON daily_nav_history (scheme_code, nav_date ASC);
