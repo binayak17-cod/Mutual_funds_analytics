@@ -1,11 +1,11 @@
-# Day 1 — Data Quality Summary Report
+# Day 1 - Data Quality Summary Report
 
 - **Unique Fund Houses:** 10
 - **Total Master Relationship Keys:** 40
 - **Total History Tracking Keys:** 40
 - **Data Discrepancies / Missing Records:** 0
 
-# DAY 2 — Data Cleaning + SQL Database Design
+# DAY 2 - Data Cleaning + SQL Database Design
 # Data Dictionary
 
 ## fact_nav
