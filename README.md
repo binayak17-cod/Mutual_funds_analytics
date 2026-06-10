@@ -103,14 +103,75 @@ Total Charts Generated: 15
 
 ---
 
+### Day 4 – Fund Performance Analytics
+
+Performed advanced performance evaluation and risk analysis across all mutual fund schemes.
+
+#### Metrics Computed
+
+* Daily Return Analysis
+* CAGR (Compound Annual Growth Rate)
+* Sharpe Ratio
+* Sortino Ratio
+* Alpha & Beta Analysis
+* Maximum Drawdown Analysis
+* Fund Scorecard Ranking
+* Benchmark Comparison (NIFTY 50 & NIFTY 100)
+* Tracking Error Analysis
+
+#### Deliverables Generated
+
+##### Performance Analytics Notebook
+
+* Performance_Analytics.ipynb
+
+##### Processed Outputs
+
+* alpha_beta.csv
+* fund_scorecard.csv
+* max_drawdown.csv
+* tracking_error.csv
+
+##### Visualizations
+
+* Daily Return Distribution
+* Top 10 Funds by CAGR
+* Top 10 Funds by Sharpe Ratio
+* Sharpe Ratio Distribution
+* Top 10 Funds by Alpha
+* Maximum Drawdown Analysis
+* Fund Scorecard Ranking
+* Benchmark Comparison Chart
+* Tracking Error Analysis
+
+Total Additional Charts Generated: 9
+
+#### Key Performance Measures
+
+| Metric           | Purpose                                  |
+| ---------------- | ---------------------------------------- |
+| CAGR             | Measures annualized growth rate          |
+| Sharpe Ratio     | Measures risk-adjusted return            |
+| Sortino Ratio    | Measures downside risk-adjusted return   |
+| Alpha            | Measures excess return over benchmark    |
+| Beta             | Measures market sensitivity              |
+| Maximum Drawdown | Measures worst historical decline        |
+| Tracking Error   | Measures deviation from benchmark        |
+| Fund Score       | Composite ranking of overall performance |
+
+---
+
 ## Dashboard
 
-A Streamlit dashboard was developed to display all generated visualizations from the EDA phase.
+A Streamlit dashboard was developed to display analytical insights and visualizations generated throughout the project.
 
-Features:
+### Features
 
-* Chart Gallery View
-* Automatic Chart Loading
+* Automated Chart Loading
+* EDA Visualizations
+* Performance Analytics Visualizations
+* Fund Ranking Charts
+* Benchmark Comparison Charts
 * Interactive Dashboard Interface
 
 ---
@@ -136,16 +197,37 @@ Features:
 Mutual_funds_analytics/
 │
 ├── data/
+│   ├── raw/
+│   └── processed/
+│
 ├── notebooks/
+│   ├── mutual_funds_exploration.ipynb
+│   ├── EDA_Analysis.ipynb
+│   └── Performance_Analytics.ipynb
+│
 ├── sql/
+│
 ├── charts/
+│
 ├── dashboard/
+│   └── app.py
+│
 └── README.md
 ```
 
 ---
 
+## Project Status
+
+### Completed
+
+* Day 1 – Data Collection & Validation
+* Day 2 – Data Cleaning & SQL Database Design
+* Day 3 – Exploratory Data Analysis
+* Day 4 – Fund Performance Analytics
+
+---
+
 ## Author
 
-Binayak Naudia
-
+**Binayak Naudia**
